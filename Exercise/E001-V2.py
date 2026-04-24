@@ -4,7 +4,7 @@ class category:
         self.code = code
         self.parent = parent
         self.display_name = ""
-        # self.products = [] 
+        self.products = []
     def gen_display_name(self):
         name = [] 
         current = self 
