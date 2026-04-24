@@ -1,0 +1,53 @@
+# operator in python 
+# logical operator
+# arithmetical operator
+# assignmental operator
+# comparision 
+
+* six type of string function
+
+* types of string 
+single quoted string
+double quoted string
+triple quoted string
+ 
+* use somthing in escape sequence chareacter 
+\n - use to new line in variable or print 
+\t - use to extra space in variable or data
+
+in use print in one line give string or variable all write to example of 
+a = input("enter your name")
+print(f"Good
+
+* Tupples 
+it will show the type of data 
+it is string , int ,floating which value give in the data
+tupples will be not change in data as per list method 
+
+
+*Dictionary
+    -enter a data in key value
+    -list of key value
+    -it is one type of jason format
+    property:
+        it is unorder
+        it is mutable
+        it is indexed
+        cannot duplicate key enter in Dictionary
+
+*set
+    -in set no element repeat
+    -set is number of element
+    -empty set write in s = set()
+    -it is unorder
+    -there is no way to change items in sets 
+    -set cannot conatian duplicate
+
+* CONDITIONAL EXPRESSION
+    -IF ELSE AND ELIF IN PYTHON
+
+* reletional operators
+    == equal
+    <= grater than / equal to
+    >= less than / equal to
+
