@@ -5,6 +5,8 @@
 # class -2 - com
 # class -3 - generate movement and increase and stock in to_location and decrese a stock in from_location 
 # if zero show error 
+
+
 class location:
     def __init__(self, name, code):
         self.name = name
@@ -35,19 +37,19 @@ class movement:
 
         # store movement
         movement.all_movement.append(self)
-    
-    def movements_by_product(prod):
-        result = [ ]
+        
+    def movement_by_product(prod):
+        result = []
         for m in movement.all_movement:
             if m.product == prod:
                 result.append(m)
-        return result
-        
-        
-l1 = location("warehouse1", "r01")
-l2 = location("warehouse2", "r02")
-l3 = location("warehouse3", "r03")
-l4 = location("warehouse4", "r04")
+        return result 
+
+    
+l1 = location("rajkot", "r01")
+l2 = location("jamnagar", "r02")
+l3 = location("surat", "r03")
+l4 = location("mumbai", "r04")
 
 locations = [l1, l2, l3, l4]
 
@@ -72,20 +74,18 @@ m4 = movement(l4, l1, p4, 20)
 m5 = movement(l1, l3, p5, 25)
 
 for p in products:
-    print("product :" ,p.name)
-    moves = movement.movements_by_product(p)
+    print("products : ",p.name)
+    moves = movement.movement_by_product(p)
     for m in moves:
-        print(f"from {m.from_location.name} to {m.to_location.name} quantity : {m.quantity}")   
-    print("\n")
+        print(m.from_location.name, "->" , m.to_location.name, ":", m.quantity)
+        
 
-# product stock at location
 for p in products:
-    print("product : ", p.name)
+    print("product",p.name)
     for loc, qty in p.stock_at_locations.items():
         print(loc.name, ":" , qty)
     print("\n")
-
-# display product list by location
+    
 for loc in locations:
     print("\nLocation:", loc.name)
     for p in products:
