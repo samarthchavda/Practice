@@ -28,9 +28,11 @@ products = [
     product("pencil","c010",c2,5)
 ]
 
+
 for p in products:
     p.category.no_of_products +=1
 
+print("categories info with its number of products")
 for c in c1,c2,c3:
     print(f"{c.name} category has no of products: {c.no_of_products}")
 print("\n")
@@ -62,5 +64,7 @@ for p in products:
         print("product deatils : ")
         print(f"product name : {p.name}")
         print(f"product price : {p.price}")
+        break
     else:
         print("product not found")
+        
