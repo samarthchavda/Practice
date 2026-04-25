@@ -38,6 +38,13 @@ class movement:
         # store movement
         movement.all_movement.append(self)
 
+    def movement_by_product(prod):
+        result = []
+        for m in movement.all_movement:
+            if m.product == prod:
+                result.append(m)
+        return result
+
 
     
 l1 = location("rajkot", "r01")
@@ -67,7 +74,14 @@ m3 = movement(l3, l4, p3, 15)
 m4 = movement(l4, l1, p4, 20)
 m5 = movement(l1, l3, p5, 25)
 
+for p in products:
+    print("product",p.name)
+    moves = movement.movement_by_product(p)
+    for m in moves:
+        print(f"from {m.from_location.name} to {m.to_location.name} = {m.quantity}")
+    print("\n")
 
+for p in products:
     print("product",p.name)
     for loc, qty in p.stock_at_locations.items():
         print(loc.name, ":" , qty)
@@ -77,4 +91,4 @@ for loc in locations:
     print("\nLocation:", loc.name)
     for p in products:
          if p.stock_at_locations[loc] > 0:
-            print("-", p.name)
+            print(p.name)
