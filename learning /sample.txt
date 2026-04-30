@@ -1,0 +1,42 @@
+Profile Summary
+As a Computer Engineering student with hands-on experience in Full-stack development and AI integration, I have a strong
+grasp of how complex software systems are built and managed. My experience in developing end-to-end applications has
+taught me how to identify system gaps and troubleshoot bugs effectively. I am confident that my technical background,
+combined with my ability to explain complex features simply, will allow me to deliver great results in a client-facing technical
+role.
+Education
+Marwadi University, Rajkot B.Tech in Computer Engineering
+CGPA: 6.52/10 Relevant Courses
+2022 – 2026
+Expected Graduation: June 2026
+Artificial Intelligence | Machine Learning | DBMS | Operating Systems | Web Technology | OOP (Java)
+Featured Project
+CodeCampus AI GitHub — Live
+• AI-powered full-stack platform for student learning, placement preparation, and career guidance.
+• Built an intelligent AI assistant using Gemini API for real-time coding help, explanations, and interview preparation.
+• Developed aptitude + technical modules with structured practice and progress tracking.
+• Implemented JWT authentication + Google OAuth with FastAPI backend and PostgreSQL database.
+• Designed a modern UI using React, TypeScript, Vite, Tailwind CSS, and Zustand.
+• Deployed production-ready system using Vercel and Render.
+Major Project
+StudyPoint GitHub — Live
+• MERN-based study platform with secure login and role-based access.
+• Organized content management for students.
+Online Document Repository GitHub
+• MERN application for document sharing between faculty and students.
+• Features task assignment, file uploads, approval system, and notifications.
+• Integrated JWT authentication and OCR using Tesseract.js.
+Projects
+Online Learning Website GitHub
+• MERN-based platform for course management with admin and student roles.
+• Supports course uploads, user authentication, and interactive UI.
+Movie Rating Website GitHub
+• Full-stack movie review system with user authentication and real-time interactions.
+• Built using React, Node.js, and MongoDB.
+Technical Skills
+Languages: JavaScript, TypeScript, Python, Java, HTML, CSS
+Frameworks: React.js, Node.js, Express.js, FastAPI
+Database: MongoDB, MySQL, PostgreSQL
+Tools: Git, GitHub, VS Code, Vercel, Render
+Achievements
+• 1st Runner-up in Tug of War at Marwadi University.
