@@ -29,3 +29,14 @@ many2one
 date/datetime
 char (less common)
 
+
+Other Useful Widgets which is use in like a progressbar
+1. statusbar
+2. radio
+3. badge
+4. priority
+5. boolean toggel
+6. img widgets
+7. many2one avatar
+
+

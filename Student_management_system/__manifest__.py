@@ -7,6 +7,6 @@
         'views/views.xml',
         'security/ir.model.access.csv',
     ],
-    'installble':True,
+    'installable': True,
     'application':True,
 }
