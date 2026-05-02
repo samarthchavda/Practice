@@ -1,6 +1,6 @@
 {
     'name':'employee management system',
-    'description':'employ data manage and showing',
+    'description':'employ data manage',
     'summary':'employ data manage and showing',
     'version':'1.0',
     'depends':['base'],

@@ -1,0 +1,31 @@
+res_model = use to tablem model data show
+<field name="res_model">emp.data</field> <!-- this is showing like a table model data show -->
+
+ir.ui.view = Model used to define UI (frontend structure) in Odoo
+it store xml like view list,kanban,form,search
+
+so now whenever you wnat to so in list as only some selected filed so use that field in different gorups in form tag
+
+Group By topic :
+grouping records based on a field
+
+this like a without group:
+Property A   | State: New
+Property B   | State: Sold
+Property C   | State: New
+
+with group by state
+New
+  - Property A
+  - Property C
+
+Sold
+  - Property B
+
+
+Field must be:
+selection
+many2one
+date/datetime
+char (less common)
+

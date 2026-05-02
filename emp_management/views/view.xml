@@ -1,0 +1,42 @@
+<odoo>
+	
+	<!-- Form view of emp.master model -->
+	<record id = "view_emp_master_form" model="ir.ui.view">
+		<field name="name">Employee management form view</field>
+		<field name="model">emp.master</field>
+		<field name="arch" type="xml">
+			<form string="Employee Management">
+				<group>
+					<field name="name"/>
+					<field name="phone_no"/>
+					<field name="birth_date"/>
+					<field name="gross_sal"/>
+				</group>
+			</form>
+		</field>
+	</record>
+	
+	<!-- emp.master list -->
+	<record id = "view_emp_master_list" model="ir.ui.view">
+		<field name="name">Employee management list view</field>
+		<field name="model">emp.master</field>
+		<field name="arch" type="xml">
+			<list string="Employee Management">
+				<field name="name"/>
+				<field name="phone_no"/>
+				<field name="birth_date"/>
+				<field name="gross_sal"/>
+			</list>
+		</field>
+	</record>
+	
+    <record id="action_emp_master" model="ir.actions.act_window">
+        <field name="name">Employees</field>
+        <field name="res_model">emp.master</field>
+        <field name="view_mode">list,form</field>
+    </record>
+    
+    <menuitem id="menu_emp_management_main" name="Employee Management"/>
+    <menuitem id = "menu_emp_management_emp_list" name="Employees" action="action_emp_master" parent="menu_emp_management_main" />
+
+</odoo>
