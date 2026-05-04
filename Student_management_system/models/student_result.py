@@ -21,3 +21,23 @@ class StudentResult(models.Model):
 
     subject_2 = fields.Char(string="Subject 2", required=True)
     marks_2 = fields.Float(string="Marks 2", required=True)
+
+    total_marks = fields.Float(
+        string="Total Marks",
+        compute="_compute_total_marks",
+        store=True
+    )
+
+    percentage = fields.Float(
+        string="Percentage",
+        compute="_compute_percentage",
+        store=True
+    )
+
+    def _compute_total_marks(self):
+        for rec in self:
+            rec.total_marks = rec.marks_1 + rec.marks_2
+
+    def _compute_percentage(self):
+        for rec in self:
+            rec.percentage = (rec.total_marks / 200) * 100

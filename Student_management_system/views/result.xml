@@ -10,6 +10,8 @@
                 <field name="marks_1"/>
                 <field name="subject_2"/>
                 <field name="marks_2"/>
+                <field name="total_marks"/>
+                <field name="percentage"/>
             </list>
         </field>
     </record>
@@ -27,6 +29,8 @@
                         <field name="marks_1"/>
                         <field name="subject_2"/>
                         <field name="marks_2"/>
+                        <field name="total_marks"/>
+                        <field name="percentage"/>
                     </group>
                 </sheet>
             </form>
