@@ -1,4 +1,4 @@
-from odoo import models, fields
+from odoo import models, fields, api
 
 class StudentResult(models.Model):
     _name = 'student.result'
@@ -34,10 +34,12 @@ class StudentResult(models.Model):
         store=True
     )
 
+    @api.depends('marks_1', 'marks_2')
     def _compute_total_marks(self):
         for rec in self:
             rec.total_marks = rec.marks_1 + rec.marks_2
 
+    @api.depends('total_marks')
     def _compute_percentage(self):
         for rec in self:
             rec.percentage = (rec.total_marks / 200) * 100

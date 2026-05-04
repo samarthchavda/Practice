@@ -34,7 +34,7 @@
                 </form>
             </field>
         </record>
-        
+
         <record id="actions_student" model="ir.actions.act_window">
             <field name="name">Students</field>
             <field name="res_model">student.deatils</field>
