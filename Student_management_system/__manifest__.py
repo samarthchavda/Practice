@@ -5,6 +5,7 @@
     'depends':['base'],
     'data':[
         'views/views.xml',
+        'views/result.xml',
         'security/ir.model.access.csv',
     ],
     'installable': True,

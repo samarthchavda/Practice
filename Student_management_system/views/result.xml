@@ -1,0 +1,46 @@
+<odoo>
+    <record id="result_list_data" model="ir.ui.view">
+        <field name="name">student.result.list</field>
+        <field name="model">student.result</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="student_id"/>
+                <field name="semester"/>
+                <field name="subject_1"/>
+                <field name="marks_1"/>
+                <field name="subject_2"/>
+                <field name="marks_2"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="result_form_data" model="ir.ui.view">
+        <field name="name">student.result.form</field>
+        <field name="model">student.result</field>
+        <field name="arch" type="xml">
+            <form string="Student Result">
+                <sheet>
+                    <group>
+                        <field name="student_id"/>
+                        <field name="semester"/>
+                        <field name="subject_1"/>
+                        <field name="marks_1"/>
+                        <field name="subject_2"/>
+                        <field name="marks_2"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="actions_result" model="ir.actions.act_window">
+        <field name="name">Student Results</field>
+        <field name="res_model">student.result</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem id="menu_result"
+              name="Student Results"
+              parent="menu_student_root"
+              action="actions_result"/>
+</odoo>

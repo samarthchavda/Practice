@@ -3,98 +3,38 @@
             <field name="name">student.details.list</field>
             <field name="model">student.deatils</field>
             <field name="arch" type="xml">
-                <list decoration-success="state == 'passed'"
-                      decoration-warning="state == 'admitted'"
-                      decoration-muted="state == 'draft'">
-
+                <list>
                     <field name="name"/>
                     <field name="roll_no"/>
                     <field name="phone"/>
-                    <field name="course"/>
-                    <field name="year"/>
-                    <field name="state"/>
-
+                    <field name="student_active"/>
+                    <field name="nationality"/>
                 </list>
             </field>
         </record>
 
-        <!-- FORM VIEW -->
         <record id="studenet_form_data" model="ir.ui.view">
             <field name="name">student.details.form</field>
             <field name="model">student.deatils</field>
             <field name="arch" type="xml">
                 <form string="Student Management">
-
-                    <!-- HEADER -->
-                    <header>
-                        <button name="action_admit"
-                                type="object"
-                                string="Admit"
-                                class="btn-primary"
-                                invisible="state != 'draft'"/>
-
-                        <button name="action_pass"
-                                type="object"
-                                string="Pass"
-                                class="btn-primary"
-                                invisible="state != 'admitted'"/>
-
-                        <button name="action_reset"
-                                type="object"
-                                string="Reset"
-                                invisible="state == 'draft'"/>
-
-                        <field name="state" widget="statusbar"/>
-                    </header>
-
-                    <!-- BODY -->
                     <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="roll_no"/>
+                            <field name="phone"/>
+                            <field name="student_active"/>
+                            <field name="nationality"/>
 
-                        <!-- BASIC INFO -->
-                        <group string="Basic Information">
-                            <group>
-                                <field name="name"/>
-                                <field name="roll_no"/>
-                                <field name="gender"/>
-                                <field name="age"/>
-                            </group>
-                            <group>
-                                <field name="course"/>
-                                <field name="year"/>
-                                <field name="division"/>
-                                <field name="admission_date"/>
-                            </group>
+                            <field name="other"
+                                   invisible="nationality == 'indian'"
+                                   required="nationality == 'non_indian'"/>
                         </group>
-
-                        <!-- CONTACT -->
-                        <group string="Contact Details">
-                            <group>
-                                <field name="phone"/>
-                                <field name="email"/>
-                            </group>
-                            <group>
-                                <field name="parent_name"/>
-                                <field name="parent_phone"/>
-                                <field name="emergency_contact"/>
-                            </group>
-                        </group>
-
-                        <!-- ADDRESS -->
-                        <group string="Address">
-                            <field name="address"/>
-                        </group>
-
-                        <!-- PERFORMANCE -->
-                        <group string="Performance">
-                            <field name="percentage"/>
-                        </group>
-
                     </sheet>
                 </form>
             </field>
         </record>
-
-        <!-- ACTION -->
+        
         <record id="actions_student" model="ir.actions.act_window">
             <field name="name">Students</field>
             <field name="res_model">student.deatils</field>
