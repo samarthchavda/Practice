@@ -6,6 +6,7 @@
     'data':[
         'views/views.xml',
         'views/result.xml',
+        'views/final_result.xml',
         'security/ir.model.access.csv',
     ],
     'installable': True,

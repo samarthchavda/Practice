@@ -34,6 +34,11 @@ class StudentResult(models.Model):
         store=True
     )
 
+    status = fields.Selection([
+        ('pass','Pass'),
+        ('fail','Fail'),
+    ], string='Status',compute='_compute_status',store=True)
+
     @api.depends('marks_1', 'marks_2')
     def _compute_total_marks(self):
         for rec in self:
@@ -43,3 +48,8 @@ class StudentResult(models.Model):
     def _compute_percentage(self):
         for rec in self:
             rec.percentage = (rec.total_marks / 200) * 100
+
+    @api.depends('percentage')
+    def _compute_status(self):
+        for rec in self:
+            rec.status = 'pass' if rec.percentage >= 35 else 'fail'

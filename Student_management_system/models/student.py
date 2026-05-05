@@ -13,9 +13,3 @@ class Student(models.Model):
         ('non_indian','Non Indian')
     ],string="Nationality",required=True)
     other = fields.Char("Other")
-
-    result_ids = fields.One2many(
-        'student.result',
-        'student_id',
-        string="Student Results"
-    )
