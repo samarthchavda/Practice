@@ -6,6 +6,13 @@
             <list string="Properties">
                 <field name="name"/>
                 <field name="expected_price"/>
+                <field name="selling_price"/>
+                <field name="bedrooms"/>
+                <field name="living_area"/>
+                <field name="garden"/>
+                <field name="buyer_name"/>
+                <field name="offer_count"/>
+                <field name="state" widget="badge"/>
             </list>
         </field>
     </record>
@@ -15,7 +22,51 @@
         <field name="model">estate.property</field>
         <field name="arch" type="xml">
             <form string="Property">
+<!--                add button on header-->
+                <header>
+
+                    <button name="action_offer_received"
+                                string="Offer Received"
+                                type="object"
+                                class="btn-primary"
+                                invisible="state != 'new' "/>
+
+                    <button name="action_cancel"
+                                string="Cancel"
+                                type="object"
+                                class="btn-secondary"
+                                invisible="state == 'cancelled'"/>
+
+                    <field name="state" widget="statusbar"
+                               statusbar_visible="new,offer_received,sold,cancelled"/>
+
+                </header>
                 <sheet>
+<!--                smart button -->
+                    <div class="oe_button_box" name="button_box">
+
+                        <button name="action_view_meetings"
+                                type="object"
+                                class="oe_stat_button"
+                                icon="fa-calendar">
+                            <field name="meeting_count" widget="statinfo" string="Meetings"/>
+                        </button>
+
+                        <button name="action_view_offers"
+                                type="object"
+                                class="oe_stat_button"
+                                icon="fa-money">
+                            <field name="offer_count" widget="statinfo" string="Offers"/>
+                         </button>
+
+                       <button name="action_view_rental"
+                                type="object"
+                                class="oe_stat_button"
+                                icon="fa-home">
+                            <field name="rental_count" widget="statinfo" string="Rentals"/>
+                        </button>
+                    </div>
+
                     <group>
                         <field name="name"/>
                         <field name="expected_price"/>
@@ -34,7 +85,23 @@
                                 <field name="garden_orientation"/>
                             </group>
                          </page>
-
+                        <page string="detail of home">
+                            <group>
+                                <field name="address"/>
+                                <field name="area"/>
+                                <field name="city"/>
+                                <field name="pincode"/>
+                            </group>
+                        </page>
+                        <page string="Offers">
+                            <field name="offer_id">
+                                <list editable="bottom">
+                                    <field name="buyer_name"/>
+                                    <field name="price"/>
+                                    <field name="status"/>
+                                </list>
+                            </field>
+                        </page>
                     </notebook>
                 </sheet>
             </form>
@@ -52,4 +119,38 @@
               name="Properties"
               parent="estate_menu_root"
               action="estate_property_action"/>
+
+<!--    showing multiple menu-->
+    <menuitem id="estate_property_offer_menu"
+              name="Offers"
+              parent="estate_menu_root"
+              action="estate_property_offer_action"/>
+
+<!--    showing sold properties menu-->
+    <record id="estate_sold_property_action" model="ir.actions.act_window">
+        <field name="name">Sold Properties</field>
+        <field name="res_model">estate.property</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('state','=','sold')]</field>
+    </record>
+
+    <menuitem id="estate_sold_property_menu"
+              name="Sold Properties"
+              parent="estate_menu_root"
+              action="estate_sold_property_action"/>
+
+<!--    availble properties menu-->
+    <record id="estate_available_property_action" model="ir.actions.act_window">
+        <field name="name">Available Properties</field>
+        <field name="res_model">estate.property</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('state','=','new')]</field>
+    </record>
+
+    <menuitem id="estate_available_property_menu"
+              name="Available Properties"
+              parent="estate_menu_root"
+              action="estate_available_property_action"/>
+
 </odoo>
+

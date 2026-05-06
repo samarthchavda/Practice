@@ -2,6 +2,7 @@ from odoo import models, fields, api
 
 class StudentResult(models.Model):
     _name = 'student.result'
+    _rec_name = "student_id"
 
     student_id = fields.Many2one(
         'student.deatils',

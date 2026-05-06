@@ -4,7 +4,7 @@ class Order(models.Model):
     _name = 'sales.order'
     _description = 'Sales Order'
 
-    order_number = fields.Char(string="Order Number", required=True, copy=False, readonly=True)
+    order_number = fields.Char(string="Order Number", required=True, copy=False, readonly=True, default='New')
     date = fields.Date(string="date")
 
     order_line_ids = fields.One2many(

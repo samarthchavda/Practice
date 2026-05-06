@@ -39,4 +39,57 @@ Other Useful Widgets which is use in like a progressbar
 6. img widgets
 7. many2one avatar
 
+**** use compute = _compute_method ***
+
+that is use to that field in use a metod and logic write that method
+sytax
+compute = _compute_total_marks
+and  that is use like
+def _compute_total_marks(self)
+    pass
+
+* use a decorator in odoo and ORM features
+1. @api.depends()- continued field values comes (updating)
+2. @api.onchange()- work only in ui and not stored automatically
+3. @api.contrains()- validation before save
+4. create()- when record is created and use in auto sequence
+5. write()- using a when a updating a record - track changes, autoupdate, validation
+6. unlink()- use for delete logic
+7. search()- find record from database
+8. mapped()- use in one2many relationship
+9. filtered()- filter records
+10. contect() - used for default values and passing temporary data
+
+
+* fields in odoo
+char
+float
+integer
+booolen
+Date
+Datetime
+selection
+many2one
+one2many
+many2many
+binary - use for attach a img ,file, pdf
+Monetary
+
+*parameters
+string
+requried
+readonly
+default
+compute
+store
+related
+
+chek database in terminal commands
+
+1. psql -U chavdasamarth -d postgres
+2. \l = check list of database owner and databse name
+3. \c database name
+3. \dt *estate* =  filter tables containing word estate
+
+
 
