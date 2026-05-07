@@ -1,13 +1,12 @@
 {
     'name': 'Real Estate',
+    'description': "real real",
     'version': '1.0',
-    'summary': 'Real Estate Advertisement',
-    'category': 'Sales',
     'depends': ['base'],
     'data': [
         'security/ir.model.access.csv',
-        'views/estate_property_views.xml',
         'views/offers_view.xml',
+        'views/estate_property_views.xml',
     ],
     'application': True,
     'installable': True,

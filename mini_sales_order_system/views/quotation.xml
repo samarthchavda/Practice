@@ -1,0 +1,53 @@
+<odoo>
+
+    <record id="sales_quotation_list_view" model="ir.ui.view">
+        <field name="name">sales.quotation.list</field>
+        <field name="model">sales.quotation</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="quotation_number"/>
+                <field name="customer_name"/>
+                <field name="quotation_date"/>
+                <field name="amount"/>
+                <field name="status"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="sales_quotation_form_view" model="ir.ui.view">
+        <field name="name">sales.quotation.form</field>
+        <field name="model">sales.quotation</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_sent" string="Sent" type="object" class="btn-primary"/>
+                    <button name="action_confirmed" string="Confirm" type="object" class="btn-success"/>
+                    <button name="action_cancel" string="Cancel" type="object" class="btn-danger"/>
+                    <field name="status" widget="statusbar" statusbar_visible="draft,sent,confirmed,cancel"/>
+                </header>
+
+                <sheet>
+                    <group>
+                        <field name="quotation_number"/>
+                        <field name="customer_name"/>
+                        <field name="quotation_date"/>
+                        <field name="amount"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="sales_quotation_action" model="ir.actions.act_window">
+        <field name="name">Quotations</field>
+        <field name="res_model">sales.quotation</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+<menuitem id="menu_quotations"
+          name="Quotations"
+          parent="menu_order_root"
+          action="sales_quotation_action"
+          sequence="2"/>
+
+</odoo>

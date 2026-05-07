@@ -6,6 +6,9 @@
     'data':[
         "views/order.xml",
         "views/order_line.xml",
+        "views/delivery.xml",
+        "views/invoice.xml",
+        "views/quotation.xml",
         "security/ir.model.access.csv",
     ],
     'application':True,

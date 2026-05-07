@@ -1,0 +1,37 @@
+<odoo>
+    <record id="sales_delivery_list_view" model="ir.ui.view">
+        <field name="name">sales.delivery.list</field>
+        <field name="model">sales.delivery</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="delivery_name"/>
+                <field name="order_id"/>
+                <field name="delivery_date"/>
+                <field name="status"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="sales_delivery_form_view" model="ir.ui.view">
+        <field name="name">sales.delivery.form</field>
+        <field name="model">sales.delivery</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_ready" string="Ready" type="object" class="btn-primary"/>
+                    <button name="action_done" string="Done" type="object" class="btn-success"/>
+                    <button name="action_cancel" string="Cancel" type="object" class="btn-danger"/>
+                    <field name="status" widget="statusbar" statusbar_visible="draft,ready,done,cancel"/>
+                </header>
+                <sheet>
+                    <group>
+                        <field name="delivery_name"/>
+                        <field name="order_id"/>
+                        <field name="delivery_date"/>
+                        <field name="status"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

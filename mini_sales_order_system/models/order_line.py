@@ -3,6 +3,7 @@ from odoo import fields, models,api
 class OrderLine(models.Model):
     _name = 'order.line'
     _description = 'Order Line'
+    _rec_name = 'order_id'
 
     product_name = fields.Char(string='Product Name')
     quantity = fields.Integer(string='Quantity')

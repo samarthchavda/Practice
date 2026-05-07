@@ -1,4 +1,4 @@
-from odoo import fields,models
+from odoo import fields,models,api
 from odoo.exceptions import UserError
 
 class Offer(models.Model):
@@ -32,7 +32,7 @@ class Offer(models.Model):
             rec.status = 'accepted'
 
             other_offers = rec.search([
-                ('property_id', '==' ,rec.property_id.id ),
+                ('property_id', '=' ,rec.property_id.id ),
                 ('id', '!=', rec.id),
             ])
 

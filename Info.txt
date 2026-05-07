@@ -91,5 +91,21 @@ chek database in terminal commands
 3. \c database name
 3. \dt *estate* =  filter tables containing word estate
 
+in using a function find a last number or last data use like
+last_order = search(
+                    [('order_number','like','s%')],
+                    order = id desc,
+                    limit=1
+                    )
+find the last number: last_order
+
+use header when in product showing like a button and that time use header in form view and add also widget to show like a process flow
+when a put a samrt button in product page like a delivery , invoice or other that type you want that time use in sheet and in sheet use div class and button with class, name,type,icon
+
+automatic dele when parent is delete that time child data is automatic delete
+ondelete='cascade'
+ondelete='restrict' - use to releated record is exists so that's why not deleted recorded
+ondelete='set null' - use to when parent is delete that time that is null
+
 
 

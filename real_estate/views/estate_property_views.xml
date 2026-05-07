@@ -51,7 +51,7 @@
                                 icon="fa-calendar">
                             <field name="meeting_count" widget="statinfo" string="Meetings"/>
                         </button>
-
+                <!-- method which is call in python -->
                         <button name="action_view_offers"
                                 type="object"
                                 class="oe_stat_button"

@@ -5,6 +5,8 @@
         <field name="arch" type="xml">
             <list>
                 <field name="order_number"/>
+                <field name="customer_name"/>
+<!--                <field name="quotation_id"/>-->
                 <field name="date"/>
                 <field name="total_amount"/>
             </list>
@@ -16,9 +18,57 @@
         <field name="model">sales.order</field>
         <field name="arch" type="xml">
             <form>
+                <header>
+
+                    <button name="action_order_confirm"
+                            string="order confirm"
+                            type="object"
+                            class="btn-primary"
+                            />
+                    <button name="action_order_cancel"
+                            string="cancel"
+                            type="object"
+                            class="btn-danger"
+                            />
+                    <button name="action_order_reset"
+                            string="reset to draft"
+                            type="object"
+                            />
+                    <field name="state" widget="statusbar" statusbar_visible="draft,confirmed,cancel"/>
+                </header>
+
                 <sheet>
+<!--                    smart button like deleviry -->
+
+                    <div class="oe_button_box" name="button_box">
+
+                        <button name="action_order_delivery"
+                                type="object"
+                                class="oe_stat_button"
+                                icon="fa-truck">
+                            <field name="delivery_count" widget="statinfo" string="delivery"/>
+                        </button>
+
+                        <button name="action_order_invoice"
+                                type="object"
+                                class="oe_stat_button"
+                                icon="fa-file-text-o">
+                            <field name="order_invoice" widget="statinfo" string="invoice"/>
+                        </button>
+
+                        <button name="action_order_payment"
+                                type="object"
+                                class="oe_stat_button"
+                                icon="fa-money">
+                            <field name="order_payment" widget="statinfo" string="payment"/>
+                            
+                        </button>
+                    </div>
+
                     <group>
                         <field name="order_number"/>
+                        <field name="customer_name"/>
+<!--                        <field name="quotation_id"/>-->
                         <field name="date"/>
                         <field name="total_amount" readonly="1"/>
                     </group>
@@ -46,9 +96,19 @@
         <field name="view_mode">list,form</field>
     </record>
 
-    <menuitem id="menu_sales_root" name="Sales"/>
-    <menuitem id="menu_orders"
+    <menuitem id="menu_sales_root" name="Sales"/>   <!-- main menu -->
+
+    <!-- sub menu -->
+    <menuitem id="menu_order_root"
               name="Orders"
               parent="menu_sales_root"
-              action="action_order"/>
+              sequence="2"/>
+
+    <menuitem id="menu_sales_orders"
+              name="Sales Orders"
+              parent="menu_order_root"
+              action="action_order"
+              sequence="1"/>
+
+
 </odoo>

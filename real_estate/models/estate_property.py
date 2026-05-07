@@ -83,9 +83,3 @@ class EstateProperty(models.Model):
         }
     def action_view_rental(self):
         pass
-
-    # logic of buyer name that can show in property list
-
-
-
-
