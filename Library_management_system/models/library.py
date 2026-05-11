@@ -3,6 +3,7 @@ from odoo import fields,models
 class Library(models.Model):
     _name = 'library.data'
     _description = 'Books data'
+    _rec_name = 'b_name'
 
     b_name = fields.Char('Book Name')
     b_description = fields.Char('Book Description')
@@ -13,3 +14,8 @@ class Library(models.Model):
         string="Author",
         required=True
     )
+
+    # customer_ids = fields.Many2many(
+    #     'library.customer',
+    #     string="Customer",
+    # )

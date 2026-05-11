@@ -13,3 +13,9 @@ class Student(models.Model):
         ('non_indian','Non Indian')
     ],string="Nationality",required=True)
     other = fields.Char("Other")
+
+    student_id = fields.Many2many(
+        'student.sports',
+        string="Sports",
+    )
+    

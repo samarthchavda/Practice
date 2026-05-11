@@ -7,6 +7,8 @@
         'security/ir.model.access.csv',
         'views/view.xml',
         'views/author.xml',
+        'views/customer.xml',
+        'views/issue.xml',
     ],
     'application':True,
     'installable':True,

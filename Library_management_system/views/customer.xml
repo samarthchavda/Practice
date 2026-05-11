@@ -1,0 +1,49 @@
+<odoo>
+    <record id="customer_list_view" model="ir.ui.view">
+        <field name="name">library.customer.list</field>
+        <field name="model">library.customer</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+<!--                <field name="book_ids" widget="many2many_tags"/>-->
+            </list>
+        </field>
+    </record>
+
+    <record id="customer_form_view" model="ir.ui.view">
+        <field name="name">library.customer.form</field>
+        <field name="model">library.customer</field>
+        <field name="arch" type="xml">
+            <form string="Customer">
+                <div class="oe_button_box" name="button_box">
+                        <button name="action_open_issues"
+                                type="object"
+                                class="oe_stat_button"
+                                icon="fa-book">
+
+                            <field name="book_count"
+                                   widget="statinfo"
+                                   string="Books"/>
+                        </button>
+                </div>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+<!--                        <field name="book_ids" widget="many2many_tags"/>-->
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_customer" model="ir.actions.act_window">
+        <field name="name">Customers</field>
+        <field name="res_model">library.customer</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem id="menu_customer"
+              name="Customers"
+              parent="menu_library_root"
+              action="action_customer"/>
+</odoo>

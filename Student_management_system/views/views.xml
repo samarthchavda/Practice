@@ -8,6 +8,7 @@
                     <field name="roll_no"/>
                     <field name="phone"/>
                     <field name="student_active"/>
+                    <field name="student_id"/>
                     <field name="nationality"/>
                 </list>
             </field>
@@ -25,7 +26,7 @@
                             <field name="phone"/>
                             <field name="student_active"/>
                             <field name="nationality"/>
-
+                            <field name="student_id"/>
                             <field name="other"
                                    invisible="nationality == 'indian'"
                                    required="nationality == 'non_indian'"/>

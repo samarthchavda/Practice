@@ -3,6 +3,7 @@ from odoo import models, fields, api
 class Author(models.Model):
     _name = 'library.author'
     _description = 'Library Author data'
+    _rec_name = 'auth_name'
 
     auth_name = fields.Char(string="Author Name", required=True)
 

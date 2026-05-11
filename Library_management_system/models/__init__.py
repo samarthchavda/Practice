@@ -1,1 +1,1 @@
-from . import library, author
+from . import library, author, customer, issue

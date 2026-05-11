@@ -20,12 +20,3 @@ class SalesInvoice(models.Model):
         ('paid', 'Paid'),
         ('cancel', 'Cancel'),
     ],default='draft',)
-
-    def action_post(self):
-        self.status = 'posted'
-
-    def action_paid(self):
-        self.status = 'paid'
-
-    def action_cancel(self):
-        self.status = 'cancel'

@@ -1,1 +1,1 @@
-from . import student, student_result
+from . import student, student_result,sports

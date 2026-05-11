@@ -5,7 +5,7 @@
         <field name="name">sales.invoice.list</field>
         <field name="model">sales.invoice</field>
         <field name="arch" type="xml">
-            <list>
+            <list create="false" edit="false" delete="false">
                 <field name="invoice_number"/>
                 <field name="order_id"/>
                 <field name="invoice_date"/>
@@ -14,48 +14,6 @@
             </list>
         </field>
     </record>
-
-    <!-- Form View -->
-    <record id="sales_invoice_form_view" model="ir.ui.view">
-        <field name="name">sales.invoice.form</field>
-        <field name="model">sales.invoice</field>
-        <field name="arch" type="xml">
-            <form>
-
-                <header>
-                    <button name="action_post"
-                            string="Post"
-                            type="object"
-                            class="btn-primary"/>
-
-                    <button name="action_paid"
-                            string="Paid"
-                            type="object"
-                            class="btn-success"/>
-
-                    <button name="action_cancel"
-                            string="Cancel"
-                            type="object"
-                            class="btn-danger"/>
-
-                    <field name="status"
-                           widget="statusbar"
-                           statusbar_visible="draft,posted,paid,cancel"/>
-                </header>
-
-                <sheet>
-                    <group>
-                        <field name="invoice_number"/>
-                        <field name="order_id"/>
-                        <field name="invoice_date"/>
-                        <field name="amount"/>
-                    </group>
-                </sheet>
-
-            </form>
-        </field>
-    </record>
-
     <!-- Action -->
     <record id="sales_invoice_action" model="ir.actions.act_window">
         <field name="name">Invoices</field>

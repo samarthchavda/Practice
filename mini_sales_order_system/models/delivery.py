@@ -8,6 +8,7 @@ class SalesDelivery(models.Model):
     order_id = fields.Many2one(
         'sales.order',
         string="Order",
+        ondelete='cascade',
     )
 
     delivery_name = fields.Char(string="Delivery Reference",required=True)
