@@ -39,7 +39,6 @@
 
                 <sheet>
 <!--                    smart button like deleviry -->
-
                     <div class="oe_button_box" name="button_box">
 
                         <button name="action_order_delivery"
