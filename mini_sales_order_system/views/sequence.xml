@@ -1,0 +1,35 @@
+<odoo>
+
+    <record id="seq_sale_order" model="ir.sequence">
+        <field name="name">Sales Order</field>
+        <field name="code">sales.order</field>
+        <field name="prefix">SO</field>
+        <field name="padding">4</field>
+        <field name="number_next">1</field>
+    </record>
+
+    <record id="seq_sales_invoice" model="ir.sequence">
+        <field name="name">Sales Invoices</field>
+        <field name="code">sales.invoice</field>
+        <field name="prefix">IN</field>
+        <field name="padding">4</field>
+        <field name="number_next">1</field>
+    </record>
+
+    <record id="seq_sales_payment" model="ir.sequence">
+        <field name="name">Sales Payment</field>
+        <field name="code">sales.payment</field>
+        <field name="prefix">PAY</field>
+        <field name="padding">4</field>
+        <field name="number_next">1</field>
+    </record>
+
+      <record id="seq_sales_delivery" model="ir.sequence">
+        <field name="name">Sales Delivery</field>
+        <field name="code">sales.delivery</field>
+        <field name="prefix">DEL</field>
+        <field name="padding">4</field>
+        <field name="number_next">1</field>
+    </record>
+
+</odoo>

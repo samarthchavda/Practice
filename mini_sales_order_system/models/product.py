@@ -1,4 +1,5 @@
-from odoo import fields, models
+from odoo import fields, models,api
+from odoo.exceptions import ValidationError
 
 class Product(models.Model):
     _name = 'sales.product'
@@ -19,4 +20,25 @@ class Product(models.Model):
         "product_id",
         "customer_id",
         string="Customers"
+    )
+
+    @api.constrains('price')
+    def _check_price(self):
+        for line in self:
+            if line.price <= 0:
+                raise ValidationError("price could not be less than 0")
+
+    @api.constrains('name')
+    def _check_name(self):
+        for rec in self:
+            existing = self.search([
+                ('name','=', rec.name),
+                ('id','!=',rec.id),
+            ])
+            if existing:
+                raise ValidationError("name already exists")
+
+    tag_ids = fields.Many2many(
+        'sales.product.tag',
+        string="product Tags",
     )

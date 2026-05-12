@@ -21,8 +21,8 @@
                 <form>
 
                     <header>
-                        <button name="action_paid" string="Paid" type="object" class="btn-success"/>
-                        <button name="action_cancel" string="Cancel" type="object" class="btn-danger"/>
+                        <button name="action_paid" string="Paid" type="object" class="btn-success" invisible="status != 'draft'"/>
+                        <button name="action_cancel" string="Cancel" type="object" class="btn-danger" invisible="status == 'paid'"/>
                         <field name="status" widget="statusbar" statusbar_visible="draft,paid,cancel"/>
                     </header>
                     <group>

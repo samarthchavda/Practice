@@ -1,0 +1,46 @@
+<odoo>
+    <record id="view_sales_dashboard_form" model="ir.ui.view">
+        <field name="name">sales.dashboard.form</field>
+        <field name="model">sales.dashboard</field>
+        <field name="arch" type="xml">
+            <form string="Sales Dashboard" create="0" edit="0" delete="0">
+                <sheet>
+                    <group>
+                        <group string="Products">
+                            <field name="total_products"/>
+                        </group>
+                        <group string="Orders">
+                            <field name="total_orders"/>
+                            <field name="cancelled_orders"/>
+                        </group>
+
+                        <group string="Revenue">
+                            <field name="total_revenue"/>
+                        </group>
+
+                        <group string="Payments">
+                            <field name="paid_payments"/>
+                            <field name="pending_payments"/>
+                        </group>
+
+                        <group string="Delivery">
+                            <field name="deliveries"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_sales_dashboard" model="ir.actions.act_window">
+        <field name="name">Dashboard</field>
+        <field name="res_model">sales.dashboard</field>
+        <field name="view_mode">form</field>
+    </record>
+
+    <menuitem id="menu_sales_dashboard"
+              name="Dashboard"
+              parent="menu_sales_root"
+              action="action_sales_dashboard"
+              sequence="1"/>
+</odoo>

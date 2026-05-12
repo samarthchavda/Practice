@@ -1,4 +1,5 @@
 from odoo import fields, models,api
+from odoo.exceptions import ValidationError
 
 class OrderLine(models.Model):
     _name = 'order.line'
@@ -36,3 +37,9 @@ class OrderLine(models.Model):
     def _onchange_product_id(self):
         if self.product_id:
             self.price = self.product_id.price
+
+    @api.constrains('quantity')
+    def _check_quantity(self):
+        for line in self:
+            if line.quantity <= 0:
+                raise ValidationError("Quantity must be greater than 0.")

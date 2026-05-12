@@ -1,1 +1,1 @@
-from . import order, order_line, delivery, invoice,quotation,payment,product,customer
+from . import order, order_line, delivery, invoice,quotation,payment,product,customer,dashboard,product_tag

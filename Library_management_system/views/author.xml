@@ -20,16 +20,19 @@
                         <field name="auth_name"/>
                         <field name="book_count" readonly="1"/>
                     </group>
-
-                    <group string="Books">
-                        <field name="book_id">
-                            <list editable="bottom">
-                                <field name="b_name"/>
-                                <field name="b_description"/>
-                                <field name="b_price"/>
-                            </list>
-                        </field>
-                    </group>
+                    <notebook>
+                        <page string="Book">
+                            <field name="book_id">
+                                <list editable="top">
+                                    <field name="b_name"/>
+                                    <field name="b_description"/>
+                                    <field name="b_price"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Author description">
+                        </page>
+                    </notebook>
                 </sheet>
             </form>
         </field>

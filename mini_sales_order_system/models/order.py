@@ -9,23 +9,12 @@ class Order(models.Model):
     order_number = fields.Char(string="Order Number", required=True, copy=False, readonly=True, default='New')
     date = fields.Date(string="date")
 
-    # use for a sequence increment automatic number
     @api.model_create_multi
     def create(self, vals_list):
-        last_order = self.search(
-            [('order_number', 'like', 'S%')],
-            order="id desc",
-            limit=1,
-        )
-        if last_order and last_order.order_number:
-            number_part = last_order.order_number.replace("S", "")
-            next_number = int(number_part) + 1
-        else:
-            next_number = 1
         for vals in vals_list:
-            if vals.get("order_number", "New") == "New":
-                vals["order_number"] = "S" + str(next_number).zfill(3)
-                next_number += 1
+            if vals.get('order_number', 'New') == 'New':
+                vals['order_number'] = self.env['ir.sequence'].next_by_code('sales.order')
+
         return super().create(vals_list)
 
     # for order lines one2many reverse process because of showinng in list in order page
@@ -40,14 +29,13 @@ class Order(models.Model):
         readonly=True
     )
 
-    @api.depends('order_line_ids.subtotal')
+    @api.depends('order_line_ids.subtotal','quotation_id.amount')
     def _compute_total_amount(self):
         for order in self:
-            order.total_amount = sum(order.order_line_ids.mapped('subtotal'))
-            # with gst add total prodct
-            # subtotal = sum(order.order_line_ids.mapped('subtotal'))
-            # gst = subtotal * 18 / 100
-            # order.total_amount = subtotal + gst
+            if order.quotation_id:
+                order.total_amount = sum(order.quotation_id.mapped('amount'))
+            else:
+                 order.total_amount = sum(order.order_line_ids.mapped('subtotal'))
 
     # reversed for salesdelivery class
     delivery_ids = fields.One2many(
@@ -81,7 +69,7 @@ class Order(models.Model):
             if not order.invoice_ids:
                 self.env['sales.invoice'].create({
                     'order_id': order.id,
-                    'invoice_number': 'INV-' + order.order_number,
+                    'invoice_number':self.env['ir.sequence'].next_by_code('sales.invoice'),
                     'invoice_date': fields.Date.today(),
                     'amount': order.total_amount,
                     'status': 'draft',
@@ -89,7 +77,13 @@ class Order(models.Model):
 
     def action_order_cancel(self):
         for order in self:
+            if order.state != 'confirmed':
+                raise UserError("please add at least one order line")
+            if order.payment_ids.filtered(lambda p: p.status == 'paid'):
+                raise UserError("You cannot cancel this order because payment is already paid.")
+
             order.state = 'cancel'
+
     def action_order_reset(self ):
         for order in self:
             order.state = 'draft'
@@ -112,9 +106,9 @@ class Order(models.Model):
             'type': 'ir.actions.act_window',
             'name': 'Deliveries',
             'res_model': 'sales.delivery',
-            'view_mode': 'list,form',
+            'view_mode': 'list',
             'domain': [('order_id', '=', self.id)],
-            'context': {'default_order_id': self.id},
+            'context': {'create': False},
         }
 
     def action_order_invoice(self):
@@ -131,6 +125,8 @@ class Order(models.Model):
         pass
     def action_order_payment(self):
         self.ensure_one()
+        if self.state == 'cancel':
+            raise UserError("You cannot create payment for cancelled order.")
         return {
             'type': 'ir.actions.act_window',
             'name': 'Payments',
@@ -145,6 +141,7 @@ class Order(models.Model):
         string="Quotations",
         ondelete='cascade',
     )
+
 
     customer_name = fields.Char(string="Customer Name")
 

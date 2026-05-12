@@ -12,6 +12,8 @@
         "views/quotation.xml",
         "views/payment.xml",
         "views/product.xml",
+        "views/sequence.xml",
+        "views/dashboard.xml",
     ],
     'application':True,
     'installable':True,

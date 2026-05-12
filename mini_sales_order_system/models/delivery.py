@@ -9,6 +9,7 @@ class SalesDelivery(models.Model):
         'sales.order',
         string="Order",
         ondelete='cascade',
+        readonly=True,
     )
 
     delivery_name = fields.Char(string="Delivery Reference",required=True)

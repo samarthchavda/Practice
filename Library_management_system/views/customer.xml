@@ -16,6 +16,7 @@
         <field name="arch" type="xml">
             <form string="Customer">
                 <div class="oe_button_box" name="button_box">
+<!--                <header>-->
                         <button name="action_open_issues"
                                 type="object"
                                 class="oe_stat_button"
@@ -25,6 +26,7 @@
                                    widget="statinfo"
                                    string="Books"/>
                         </button>
+<!--                </header>-->
                 </div>
                 <sheet>
                     <group>

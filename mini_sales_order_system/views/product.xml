@@ -10,6 +10,7 @@
                     <field name="price"/>
                     <field name="category"/>
                     <field name="customer_ids" widget="many2many_tags"/>
+                    <field name="tag_ids" widget="many2many_tags"/>
                 </list>
             </field>
         </record>
@@ -25,6 +26,7 @@
                             <field name="price"/>
                             <field name="category"/>
                             <field name="customer_ids" widget="many2many_tags"/>
+                            <field name="tag_ids" widget="many2many_tags"/>
                         </group>
                     </sheet>
                 </form>
