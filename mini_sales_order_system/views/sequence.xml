@@ -1,11 +1,12 @@
 <odoo>
 
     <record id="seq_sale_order" model="ir.sequence">
-        <field name="name">Sales Order</field>
-        <field name="code">sales.order</field>
+        <field name="name">Sales Order Sequence</field>
+        <field name="code">sales.order.sequence</field>
         <field name="prefix">SO</field>
         <field name="padding">4</field>
         <field name="number_next">1</field>
+        <field name="number_increment">1</field>
     </record>
 
     <record id="seq_sales_invoice" model="ir.sequence">

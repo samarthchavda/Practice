@@ -12,6 +12,7 @@ class Product(models.Model):
         ('fashion', 'Fashion'),
         ('grocery', 'Grocery'),
         ('furniture', 'Furniture'),
+        ('food', 'Food'),
     ],string="Product Category")
 
     customer_ids = fields.Many2many(

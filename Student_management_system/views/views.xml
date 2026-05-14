@@ -8,7 +8,7 @@
                     <field name="roll_no"/>
                     <field name="phone"/>
                     <field name="student_active"/>
-                    <field name="student_id"/>
+                    <field name="sport_ids" widget="many2many_tags"/>
                     <field name="nationality"/>
                 </list>
             </field>
@@ -26,7 +26,7 @@
                             <field name="phone"/>
                             <field name="student_active"/>
                             <field name="nationality"/>
-                            <field name="student_id"/>
+                            <field name="sport_ids" widget="many2many_tags"/>
                             <field name="other"
                                    invisible="nationality == 'indian'"
                                    required="nationality == 'non_indian'"/>

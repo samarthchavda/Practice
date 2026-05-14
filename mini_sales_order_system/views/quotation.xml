@@ -8,7 +8,7 @@
                 <field name="quotation_number"/>
                 <field name="customer_name"/>
                 <field name="quotation_date"/>
-                <field name="amount"/>
+                <field name="total_amount" readonly="1"/>
                 <field name="status"/>
             </list>
         </field>
@@ -20,6 +20,7 @@
         <field name="arch" type="xml">
             <form>
                 <header>
+                    <button name="action_export_xlsx" string="Export XLSX" type="object" class="btn-primary"/>
                     <button name="action_sent" string="Sent" type="object" class="btn-primary"/>
                     <button name="action_confirmed" string="Confirm" type="object" class="btn-success"/>
                     <button name="action_cancel" string="Cancel" type="object" class="btn-danger"/>
@@ -31,8 +32,20 @@
                         <field name="quotation_number"/>
                         <field name="customer_name"/>
                         <field name="quotation_date"/>
-                        <field name="amount"/>
+                        <field name="total_amount" readonly="1"/>
                     </group>
+                     <notebook>
+                        <page string="Quotation Lines">
+                            <field name="quotation_line_ids">
+                                <list editable="bottom">
+                                    <field name="product_id"/>
+                                    <field name="quantity"/>
+                                    <field name="price"/>
+                                    <field name="subtotal" readonly="1"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
                 </sheet>
             </form>
         </field>

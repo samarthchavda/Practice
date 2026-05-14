@@ -1,0 +1,28 @@
+<!--<?xml version="1.0" encoding="UTF-8"?>-->
+
+<!--<templates xml:space="preserve">-->
+
+<!--    <t t-name="owl_practice.Counter">-->
+<!--        <div class="p-4">-->
+<!--            <h1>OWL Counter App</h1>-->
+
+<!--            <h2>-->
+<!--                Counter :-->
+<!--                <t t-esc="state.count"/>-->
+<!--            </h2>-->
+
+<!--            <button t-on-click="increment">-->
+<!--                Increase-->
+<!--            </button>-->
+
+<!--            <button t-on-click="decrement">-->
+<!--                Decrease-->
+<!--            </button>-->
+
+<!--            <button t-on-click="reset">-->
+<!--                Reset-->
+<!--            </button>-->
+<!--        </div>-->
+<!--    </t>-->
+
+<!--</templates>-->

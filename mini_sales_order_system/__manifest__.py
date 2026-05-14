@@ -14,6 +14,7 @@
         "views/product.xml",
         "views/sequence.xml",
         "views/dashboard.xml",
+        "reports/sales_invoices_report.xml",
     ],
     'application':True,
     'installable':True,

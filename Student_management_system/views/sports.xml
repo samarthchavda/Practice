@@ -5,6 +5,7 @@
             <field name="arch" type="xml">
                 <list editable="top">
                     <field name="name"/>
+                    <field name="student_ids" widget="many2many_tags"/>
                 </list>
             </field>
     </record>

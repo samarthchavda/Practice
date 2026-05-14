@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<templates xml:space="preserve">
+
+    <t t-name="owl_practice.StudentDashboard">
+
+        <div class="p-4">
+
+            <h1>Student Dashboard</h1>
+
+            <div class="mb-3">
+
+                <input type="text"
+                       class="form-control mb-2"
+                       placeholder="Student Name"
+                       t-model="state.name"/>
+
+                <input type="number"
+                       class="form-control mb-2"
+                       placeholder="phone"
+                       t-model="state.phone"/>
+
+                <input type="nationality"
+                       class="form-control mb-2"
+                       placeholder="nationality"
+                       t-model="state.nationality"/>
+
+                <button class="btn btn-primary"
+                        t-on-click="createStudent">
+
+                    Save Student
+
+                </button>
+
+            </div>
+
+            <table class="table table-bordered">
+
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>phone</th>
+                        <th>nationality</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    <t t-foreach="state.students"
+                       t-as="student"
+                       t-key="student.id">
+
+                        <tr>
+
+                            <td>
+                                <t t-esc="student.name"/>
+                            </td>
+
+                            <td>
+                                <t t-esc="student.phone"/>
+                            </td>
+
+                            <td>
+                                <t t-esc="nationality"/>
+                            </td>
+                        </tr>
+
+                    </t>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </t>
+
+</templates>

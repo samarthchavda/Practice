@@ -1,0 +1,87 @@
+<!--mandatory for create pdf report -->
+<!--name -->
+<!--model-->
+<!--report_type-->
+<!--report_name-->
+<!--report_file-->
+<!--binding_model_id-->
+<!--print_report_name-->
+
+<odoo>
+
+    <record id="action_sales_invoice_report" model="ir.actions.report">
+        <field name="binding_type">report</field>
+        <field name="name">Sales Invoice</field>
+        <field name="model">sales.order</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">mini_sales_order_system.report_sales_invoice_template</field>
+        <field name="report_file">mini_sales_order_system.report_sales_invoice_template</field>
+        <field name="binding_model_id" ref="model_sales_order"/>
+        <field name="print_report_name">'Invoice - %s' % (object.order_number)</field>
+    </record>
+
+
+    <template id="report_sales_invoice_template">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.external_layout">
+                    <div class="page">
+
+                        <h2>Sales Invoice</h2>
+                        <p>
+                            <strong>Order Number:</strong>
+                            <span t-field="doc.order_number"/>
+                        </p>
+
+                        <p>
+                            <strong>Date:</strong>
+                            <span t-field="doc.date"/>
+                        </p>
+
+                        <table class="table table-sm">
+                            <thead>
+                                <tr>
+                                    <th>Product</th>
+                                    <th>Qty</th>
+                                    <th>Price</th>
+                                    <th>Subtotal</th>
+                                    <th>state</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr t-foreach="doc.order_line_ids" t-as="line">
+                                    <td>
+                                        <span t-field="line.product_id"/>
+                                    </td>
+
+                                    <td>
+                                        <span t-field="line.quantity"/>
+                                    </td>
+
+                                    <td>
+                                        <span t-field="line.price"/>
+                                    </td>
+
+                                    <td>
+                                        <span t-field="line.subtotal"/>
+                                    </td>
+
+                                    <td>
+                                        <span t-field="doc.state"/>
+                                    </td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <h4>
+                            Total:
+                            <span t-field="doc.total_amount"/>
+                        </h4>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+</odoo>

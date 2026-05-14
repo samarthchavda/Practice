@@ -21,6 +21,11 @@
             <form>
                 <header>
 
+                   <button name="%(action_sales_invoice_report)d"
+                            string="Print Invoice"
+                            type="action"
+                            class="btn-primary"
+                            />
                     <button name="action_order_confirm"
                             string="order confirm"
                             type="object"

@@ -9,5 +9,6 @@ access_sales_delivery,sales.delivery,model_sales_delivery,base.group_user,1,1,1,
 access_sales_customer,sales.customer,model_sales_customer,base.group_user,1,1,1,1
 access_sales_dashboard,sales.dashboard,model_sales_dashboard,base.group_user,1,1,1,1
 access_sales_product_tag,sales.product.tag,model_sales_product_tag,base.group_user,1,1,1,1
+access_quotation_line_user,quotation.line.user,model_quotation_line,base.group_user,1,1,1,1
 
 

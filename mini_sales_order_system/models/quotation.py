@@ -42,3 +42,36 @@ class Quotation(models.Model):
         ondelete='cascade',
 
     )
+
+    quotation_line_ids = fields.One2many(
+        'quotation.line',
+        'quotation_id',
+        string='Quotation Lines',
+    )
+
+    total_amount = fields.Float(string='Total Amount', compute='_compute_total_amount', store=True)
+
+    @api.depends('quotation_line_ids.subtotal')
+    def _compute_total_amount(self):
+        for quotation in self:
+            quotation.total_amount = sum(quotation.quotation_line_ids.mapped('subtotal'))
+
+    def action_confirmed(self):
+        for quotation in self:
+            quotation.status = 'confirmed'
+
+            if not quotation.order_id:
+                order = self.env['sales.order'].create({
+                    'date': quotation.quotation_date,
+                    'quotation_id': quotation.id,
+                    'customer_name': quotation.customer_name,
+                    'order_line_ids': [
+                        (0, 0, {
+                            'product_id': line.product_id.id,
+                            'quantity': line.quantity,
+                            'price': line.price,
+                        }) for line in quotation.quotation_line_ids
+                    ]
+                })
+
+                quotation.order_id = order.id

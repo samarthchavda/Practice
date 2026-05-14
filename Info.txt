@@ -109,3 +109,82 @@ ondelete='set null' - use to when parent is delete that time that is null
 
 
 
+in action method write a like read write or other changes for useing in button
+1. direct used self.key = value
+2. update() - could be a similar to write
+3. create() - use to create new record self.env['table name/ class name'].create(['name':'samarth'])
+4. browse() - accessing exiting record self.env['table name'].browse(1)
+5. search() - find record record = self.env[].search([])
+
+qweb pdf generate:
+
+1. first create record it cotains a id and models
+2. use model is : ir.actions.report
+3. after display name of report
+4. after write model name
+5. generate using pdf qweb <report_type> qweb-pdf - for pdf and qweb-html for web page
+6. connect report action to template like
+<field name="report_name">
+    mini_sales_order_system.report_sales_invoice_template
+</field>
+7. <t> special qweb tag
+8.  docs- record for the cuurent report'
+    doc-ids- list of ids for the docs records
+    doc-model - model for doc records
+    doc - current record
+9. loop thorugh records like use in xml is <t-foreachx>
+10 . class="page" - define a pages
+11. t-field - display model field
+12. t-esc - custome value
+13. t-lang -  use a set to a language code
+14. t-call - call another template
+15. t-set - create variable
+16. web_external_layout - use to readymad template there is showing like logo, header, footer, page no , compnay address
+17. t-as - variable name
+
+
+actions
+all action share two mandatory attributes - type -name
+-url action - ir.actions.act_url , url : 'url',
+
+server action
+ir.action.server
+to mandatory use like a id,
+ir.action.client -  use to client side like owl web , browser ,dashboard, custome screen
+ir.cron - a trigger automatically on predefine frequency (automatic schedule background task)
+
+
+
+
+ORM methods:
+-create()
+-write()
+-unlink()
+-search()
+-browse()
+-mapped()
+-filtered()
+
+
+Relations
+Many2one-	Customer in Order
+One2many-	Order Lines
+Many2many-	Students ↔ Sports
+
+
+XML Views
+View	Usage
+list	Table
+form	Details
+kanban	Cards
+search	Filters
+calendar	Events
+
+@api.depends-	compute
+@api.onchange-	UI changes
+@api.constrains-	validation
+@api.model_create_multi-	create override
+
+
+for an use of api like controllers
+@http.route('')

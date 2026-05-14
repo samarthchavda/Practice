@@ -7,15 +7,19 @@ class Student(models.Model):
     name = fields.Char("Name", required=True)
     roll_no = fields.Integer("Roll Number")
     phone = fields.Char("Phone")
-    student_active =fields.Boolean("Active", default=True)
+    student_active = fields.Boolean("Active", default=True)
+
     nationality = fields.Selection([
-        ('indian','Indian'),
-        ('non_indian','Non Indian')
-    ],string="Nationality",required=True)
+        ('indian', 'Indian'),
+        ('non_indian', 'Non Indian')
+    ], string="Nationality", required=True)
+
     other = fields.Char("Other")
 
-    student_id = fields.Many2many(
+    sport_ids = fields.Many2many(
         'student.sports',
-        string="Sports",
+        'student_sports_rel',
+        'student_id',
+        'sport_id',
+        string="Sports"
     )
-    
