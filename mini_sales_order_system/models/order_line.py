@@ -38,6 +38,19 @@ class OrderLine(models.Model):
         if self.product_id:
             self.price = self.product_id.price
 
+    @api.constrains('order_id', 'product_id')
+    def _check_duplicate_product(self):
+        for line in self:
+            if line.order_id and line.product_id:
+                duplicate_line = self.search([
+                    ('order_id', '=', line.order_id.id),
+                    ('product_id', '=', line.product_id.id),
+                    ('id', '!=', line.id),
+                ], limit=1)
+
+                if duplicate_line:
+                    raise ValidationError("This product is already added. Please increase quantity instead.")
+
     @api.constrains('quantity')
     def _check_quantity(self):
         for line in self:

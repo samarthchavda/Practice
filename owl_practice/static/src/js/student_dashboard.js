@@ -17,6 +17,11 @@ class StudentDashboard extends Component {
         });
 
         onWillStart(async () => {
+            this.state.sports = await this.orm.searchRead(
+                "student.sports",
+                [],
+                ["name"]
+            );
             await this.loadStudents();
         });
     }

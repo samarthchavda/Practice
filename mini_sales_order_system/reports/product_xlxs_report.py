@@ -86,8 +86,6 @@ class SalesQuotation(models.Model):
             'datas': base64.b64encode(output.read()),
             'res_model': self._name,
             'res_id': self.id,
-            'mimetype':
-                'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
         })
 
         return {

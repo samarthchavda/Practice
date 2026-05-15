@@ -1,0 +1,36 @@
+<odoo>
+
+    <record id="action_sales_payment_report" model="ir.actions.report">
+        <field name="biding_type">report</field>
+        <field name="name">sales Payment Data</field>
+        <field name="model">sales.payment</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">mini_sales_order_system.payment_invoice_template</field>
+        <field name="report_file">mini_sales_order_system.payment_invoice_template</field>
+        <field name="biding_model_id" ref="model_sales_payment"/>
+        <field name="print_report_name">'Invoices -%S' % (object.payment_number)</field>
+    </record>
+
+    <template id="payment_invoice_template">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.external_layout">
+                    <div class="page">
+
+                        <h2>Sales Payment</h2>
+                        <p>
+                            <strong>payment number</strong>
+                            <span t-field="doc.payment_number"/>
+                        </p>
+
+                        <p>
+                            <strong></strong>
+                        </p>
+
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+</odoo>

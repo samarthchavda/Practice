@@ -2,7 +2,7 @@
     'name': 'Mini Sales Order System',
     'description': 'mini sales order system',
     'version': '1.0',
-    'depends':['base'],
+    'depends':['base','web'],
     'data':[
         "security/ir.model.access.csv",
         "views/order.xml",

@@ -21,6 +21,11 @@
             <form>
                 <header>
 
+                    <button name="action_export_order_xlsx"
+                            string="Export XLSX"
+                            type="object"
+                            class="btn-primary"/>
+
                    <button name="%(action_sales_invoice_report)d"
                             string="Print Invoice"
                             type="action"
@@ -36,12 +41,12 @@
                             string="cancel"
                             type="object"
                             class="btn-danger"
-                            invisible="state != 'confirmed'"
+                            invisible="state != 'confirmed' or has_paid_payment"
                             />
                     <button name="action_order_reset"
                             string="reset to draft"
                             type="object"
-                            invisible="state == 'draft'"
+                            invisible="state == 'draft' or has_paid_payment"
                             />
                     <field name="state" widget="statusbar" statusbar_visible="draft,confirmed,cancel"/>
                 </header>
@@ -79,6 +84,9 @@
 <!--                        <field name="quotation_id"/>-->
                         <field name="date"/>
                         <field name="total_amount" readonly="1"/>
+                        <field name="has_paid_payment" invisible="1"/>
+                        <field name="gst_amount" readonly="1"/>
+                        <field name="grand_total" readonly="1"/>
                     </group>
 
                     <notebook>

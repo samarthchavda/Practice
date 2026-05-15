@@ -20,11 +20,32 @@
         <field name="arch" type="xml">
             <form>
                 <header>
-                    <button name="action_export_xlsx" string="Export XLSX" type="object" class="btn-primary"/>
-                    <button name="action_sent" string="Sent" type="object" class="btn-primary"/>
-                    <button name="action_confirmed" string="Confirm" type="object" class="btn-success"/>
-                    <button name="action_cancel" string="Cancel" type="object" class="btn-danger"/>
-                    <field name="status" widget="statusbar" statusbar_visible="draft,sent,confirmed,cancel"/>
+                    <button name="action_export_xlsx"
+                            string="Export XLSX"
+                            type="object"
+                            class="btn-primary"/>
+
+                    <button name="action_sent"
+                            string="Sent"
+                            type="object"
+                            class="btn-primary"
+                            invisible="status != 'draft'"/>
+
+                    <button name="action_confirmed"
+                            string="Confirm"
+                            type="object"
+                            class="btn-success"
+                            invisible="status != 'sent'"/>
+
+                    <button name="action_cancel"
+                            string="Cancel"
+                            type="object"
+                            class="btn-danger"
+                            invisible="status != 'draft'"/>
+
+                    <field name="status"
+                           widget="statusbar"
+                           statusbar_visible="draft,sent,confirmed,cancel"/>
                 </header>
 
                 <sheet>

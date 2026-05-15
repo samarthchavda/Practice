@@ -1,6 +1,7 @@
 from odoo import fields, models,api
 from odoo.exceptions import UserError
 
+
 class Order(models.Model):
     _name = 'sales.order'
     _rec_name = 'order_number'
@@ -37,16 +38,12 @@ class Order(models.Model):
         readonly=True
     )
 
-    @api.depends('order_line_ids.subtotal')
-    def _compute_total_amount(self):
-        for order in self:
-            order.total_amount = sum(order.order_line_ids.mapped('subtotal'))
-
     # reversed for salesdelivery class
     delivery_ids = fields.One2many(
         'sales.delivery',
         'order_id',
         string="Deliveries",
+        ondelete='cascade',
     )
 
     # invoice page logic with one2many
@@ -58,6 +55,13 @@ class Order(models.Model):
 
     def action_order_confirm(self):
         for order in self:
+            for line in order.order_line_ids:
+                if line.quantity > line.product_id.stock_qty:
+                    raise UserError(
+                        f"Not enough stock for {line.product_id.name}. "
+                        f"Available: {line.product_id.stock_qty}"
+                    )
+
             if not order.order_line_ids:
                 raise UserError("please add at least one order line")
 
@@ -83,7 +87,20 @@ class Order(models.Model):
 
     def action_order_reset(self ):
         for order in self:
+            if order.payment_ids.filtered(lambda p: p.status == 'paid'):
+                raise UserError("Do not rest this order because payment is already paid.")
             order.state = 'draft'
+
+    has_paid_payment = fields.Boolean(string="Has Payment",compute='_compute_paid_payment')
+    stock_deducted = fields.Boolean(string="Stock Deducted", default=False)
+
+    @api.depends('payment_ids.status')
+    def _compute_paid_payment(self):
+        for order in self:
+            order.has_paid_payment = any(
+                payment.status == 'paid'
+                for payment in order.payment_ids
+            )
 
     state = fields.Selection([
         ('draft', 'Draft'),
@@ -166,4 +183,13 @@ class Order(models.Model):
         string="Payments",
     )
 
+    gst_amount = fields.Float(string="GST 18%",compute='_compute_total_amount',store=True)
+    grand_total = fields.Float(string="Grand Total",compute='_compute_total_amount',store=True)
+
+    @api.depends('order_line_ids.subtotal')
+    def _compute_total_amount(self):
+        for order in self:
+            order.total_amount = sum(order.order_line_ids.mapped('subtotal'))
+            order.gst_amount = order.total_amount * 0.18
+            order.grand_total = order.total_amount + order.gst_amount
 

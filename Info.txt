@@ -188,3 +188,11 @@ calendar	Events
 
 for an use of api like controllers
 @http.route('')
+
+
+owl framework
+1. registries - that store a specific kink of object import from (./core/registry)
+2. serviceregistry - their declare a set of dependcies
+3. component and hooks -
+4. context - usercontext , action context
+5. 
