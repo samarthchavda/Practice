@@ -24,8 +24,8 @@
                     <button name="action_export_order_xlsx"
                             string="Export XLSX"
                             type="object"
-                            class="btn-primary"/>
-
+                            class="btn-primary"
+                            />
                    <button name="%(action_sales_invoice_report)d"
                             string="Print Invoice"
                             type="action"
@@ -36,6 +36,9 @@
                             type="object"
                             class="btn-primary"
                             invisible="state != 'draft'"
+                            id="quotation_send_primary"
+                            context="{'validate_analytic': True, 'check_document_layout': True}"
+                            data-hotkey="g"
                             />
                     <button name="action_order_cancel"
                             string="cancel"

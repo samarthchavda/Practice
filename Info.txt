@@ -184,6 +184,7 @@ calendar	Events
 @api.onchange-	UI changes
 @api.constrains-	validation
 @api.model_create_multi-	create override
+@api.ondelete() - use to when delete a record it helps to non deleted like - in sales order when order is confirmed and delete that an dwe use this decorator that time it is not deleted
 
 
 for an use of api like controllers

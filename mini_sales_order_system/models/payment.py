@@ -15,7 +15,6 @@ class Payment(models.Model):
                 vals['payment_number'] = self.env['ir.sequence'].next_by_code('sales.payment')
         return super().create(vals_list)
 
-
     order_id = fields.Many2one(
         'sales.order',
         string="Sales Order",
@@ -47,33 +46,25 @@ class Payment(models.Model):
         ("cancel", "Cancelled")
     ], default="draft")
 
-    # @api.model_create_multi
-    # def create(self, vals_list):
-    #     last_payment = self.search(
-    #         [('payment_number', 'like', 'P%')],
-    #         order="id desc",
-    #         limit=1
-    #     )
-    #
-    #     if last_payment and last_payment.payment_number:
-    #         number_part = last_payment.payment_number[1:]
-    #         next_number = int(number_part) + 1
-    #     else:
-    #         next_number = 1
-    #
-    #     for vals in vals_list:
-    #         if vals.get("payment_number", "New") == "New":
-    #             vals["payment_number"] = "P" + str(next_number).zfill(3)
-    #             next_number += 1
-    #
-    #     return super().create(vals_list)
-
     def action_paid(self):
         for payment in self:
             order = payment.order_id
 
             if order.state != 'confirmed':
                 raise UserError("Only confirmed order payment can be paid.")
+
+            if not order.stock_deducted:
+                for line in order.order_line_ids:
+                    if line.quantity > line.product_id.stock_qty:
+                        raise UserError(
+                            f"Not enough stock for {line.product_id.name}. "
+                            f"Available: {line.product_id.stock_qty}"
+                        )
+
+                for line in order.order_line_ids:
+                    line.product_id.stock_qty -= line.quantity
+
+                order.stock_deducted = True
 
             payment.status = "paid"
 

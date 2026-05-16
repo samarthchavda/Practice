@@ -1,5 +1,5 @@
 from odoo import fields, models,api
-from odoo.exceptions import UserError
+from odoo.exceptions import ValidationError, UserError
 
 
 class Order(models.Model):
@@ -192,4 +192,13 @@ class Order(models.Model):
             order.total_amount = sum(order.order_line_ids.mapped('subtotal'))
             order.gst_amount = order.total_amount * 0.18
             order.grand_total = order.total_amount + order.gst_amount
+
+    @api.ondelete(at_uninstall=False)
+    def _unlink_if_confirmed(self):
+        for order in self:
+            if order.state == 'confirmed':
+                raise ValidationError(
+                    "You cannot delete confirmed sales orders."
+                )
+
 
