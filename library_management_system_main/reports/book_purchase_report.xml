@@ -1,0 +1,82 @@
+<odoo>
+
+    <record id="action_book_purchase_invoice_report" model="ir.actions.report">
+        <field name="name">Book Purchase Invoice</field>
+        <field name="model">books.purchase</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">library_management_system_main.report_book_purchase_template</field>
+        <field name="report_file">library_management_system_main.report_book_purchase_template</field>
+        <field name="binding_model_id" ref="model_books_purchase"/>
+        <field name="binding_type">report</field>
+        <field name="print_report_name">'Invoice - %s' % (object.invoices_number)</field>
+    </record>
+
+    <template id="report_book_purchase_template">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.external_layout">
+                    <div class="page">
+
+                        <h2 style="text-align:center;">Book Purchase Invoice</h2>
+
+                        <p><strong>Invoice No:</strong> <span t-field="doc.invoices_number"/></p>
+                        <p><strong>Member:</strong> <span t-field="doc.member_id"/></p>
+                        <p><strong>Purchase Date:</strong> <span t-field="doc.purchase_date"/></p>
+                        <p><strong>Status:</strong> <span t-field="doc.state"/></p>
+
+                        <br/>
+
+                        <table class="table table-sm o_main_table">
+                            <thead>
+                                <tr>
+                                    <th>Book</th>
+                                    <th>Quantity</th>
+                                    <th>Price</th>
+                                    <th>Subtotal</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <tr t-foreach="doc.purchase_line_ids" t-as="line">
+                                    <td><span t-field="line.book_id"/></td>
+                                    <td><span t-field="line.quantity"/></td>
+                                    <td><span t-field="line.price"/></td>
+                                    <td><span t-field="line.subtotal"/></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <br/>
+
+                        <div style="width: 40%; margin-left: auto;">
+                            <table class="table table-sm">
+                                <tr>
+                                    <td><strong>Total Amount</strong></td>
+                                    <td style="text-align:right;">
+                                        <span t-field="doc.total_amount"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><strong>GST 18%</strong></td>
+                                    <td style="text-align:right;">
+                                        <span t-field="doc.gst_amount"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Grand Total</strong></td>
+                                    <td style="text-align:right;">
+                                        <strong>
+                                            <span t-field="doc.grand_total"/>
+                                        </strong>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+</odoo>

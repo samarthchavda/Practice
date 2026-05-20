@@ -72,7 +72,7 @@ class Order(models.Model):
                     'order_id': order.id,
                     'invoice_number':self.env['ir.sequence'].next_by_code('sales.invoice'),
                     'invoice_date': fields.Date.today(),
-                    'amount': order.total_amount,
+                    'amount': order.grand_total,
                     'status': 'draft',
                 })
 
@@ -175,7 +175,12 @@ class Order(models.Model):
     )
 
 
-    customer_name = fields.Char(string="Customer Name")
+    # customer_name = fields.Char(string="Customer Name")
+    customer_id = fields.Many2one(
+        'sales.customer',
+        string="Customer",
+        required=True,
+    )
 
     payment_ids = fields.One2many(
         'sales.payment',
@@ -192,7 +197,6 @@ class Order(models.Model):
             order.total_amount = sum(order.order_line_ids.mapped('subtotal'))
             order.gst_amount = order.total_amount * 0.18
             order.grand_total = order.total_amount + order.gst_amount
-
     @api.ondelete(at_uninstall=False)
     def _unlink_if_confirmed(self):
         for order in self:

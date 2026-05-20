@@ -3,76 +3,58 @@
 <templates xml:space="preserve">
 
     <t t-name="owl_practice.StudentDashboard">
-
         <div class="p-4">
+            <h2>Student Dashboard</h2>
 
-            <h1>Student Dashboard</h1>
+            <div class="card p-3 mt-3">
+                <h3>Total Students</h3>
 
-            <div class="mb-3">
-
-                <input type="text"
-                       class="form-control mb-2"
-                       placeholder="Student Name"
-                       t-model="state.name"/>
-
-                <input type="number"
-                       class="form-control mb-2"
-                       placeholder="phone"
-                       t-model="state.phone"/>
-
-                <input type="nationality"
-                       class="form-control mb-2"
-                       placeholder="nationality"
-                       t-model="state.nationality"/>
+                <h1>
+                    <t t-esc="state.totalStudents"/>
+                </h1>
 
                 <button class="btn btn-primary"
-                        t-on-click="createStudent">
+                        t-on-click="showStudentDetails">
+                    Show Student Details
+                </button>
 
-                    Save Student
-
+                 <button class="btn btn-success mt-2"
+                         t-on-click="openStudentList">
+                    Open Student List View
                 </button>
 
             </div>
 
-            <table class="table table-bordered">
+            <div class="mt-4" t-if="state.showStudents">
+                <h3>Student Details</h3>
 
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>phone</th>
-                        <th>nationality</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-
-                    <t t-foreach="state.students"
-                       t-as="student"
-                       t-key="student.id">
-
+                <table class="table table-bordered">
+                    <thead>
                         <tr>
+                            <th>Student Name</th>
+                            <th>Roll No</th>
+                            <th>Sports</th>
+                        </tr>
+                    </thead>
 
+                    <tbody>
+                        <tr t-foreach="state.students" t-as="student" t-key="student.id">
                             <td>
                                 <t t-esc="student.name"/>
                             </td>
 
                             <td>
-                                <t t-esc="student.phone"/>
+                                <t t-esc="student.roll_no"/>
                             </td>
 
                             <td>
-                                <t t-esc="nationality"/>
+                                <t t-esc="student.sport_ids"/>
                             </td>
                         </tr>
-
-                    </t>
-
-                </tbody>
-
-            </table>
-
+                    </tbody>
+                </table>
+            </div>
         </div>
-
     </t>
 
 </templates>

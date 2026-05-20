@@ -5,64 +5,45 @@ import { registry } from "@web/core/registry";
 import { useService } from "@web/core/utils/hooks";
 
 class StudentDashboard extends Component {
+    static template = "owl_practice.StudentDashboard";
+
     setup() {
         this.orm = useService("orm");
-        this.notification = useService("notification");
+        this.action = useService("action")
 
         this.state = useState({
+            totalStudents: 0,
             students: [],
-            name: "",
-            phone: "",
-            nationality:"indian ",
+            showStudents: false,
         });
 
         onWillStart(async () => {
-            this.state.sports = await this.orm.searchRead(
-                "student.sports",
-                [],
-                ["name"]
-            );
-            await this.loadStudents();
+            this.state.totalStudents = await this.orm.searchCount("student.deatils", []);
         });
+
+
     }
 
-    async loadStudents() {
+    openStudentList() {
+    this.action.doAction({
+        type: "ir.actions.act_window",
+        name: "Student Details",
+        res_model: "student.deatils",
+        view_mode: "list,form",
+        views: [[false, "list"], [false, "form"]],
+        target: "current",
+    });
+}
+
+    async showStudentDetails() {
         this.state.students = await this.orm.searchRead(
             "student.deatils",
             [],
-            ["name", "phone","nationality"]
+            ["name", "roll_no", "sport_ids"]
         );
-    }
 
-    async createStudent() {
-        if (!this.state.name || !this.state.phone) {
-            this.notification.add("Please fill all details", {
-                type: "danger",
-            });
-            return;
-        }
-
-        await this.orm.create("student.deatils", [{
-            name: this.state.name,
-            phone: this.state.phone,
-            nationality: this.state.nationality,
-        }]);
-
-        this.notification.add("Student created", {
-            type: "success",
-        });
-
-        this.state.name = "";
-        this.state.phone = "";
-        this.state.nationality= "",
-
-        await this.loadStudents();
+        this.state.showStudents = true;
     }
 }
 
-StudentDashboard.template = "owl_practice.StudentDashboard";
-
-registry.category("actions").add(
-    "owl_practice.student_dashboard",
-    StudentDashboard
-);
+registry.category("actions").add("owl_practice.student_dashboard", StudentDashboard);

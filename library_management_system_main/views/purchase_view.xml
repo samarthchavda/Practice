@@ -1,0 +1,133 @@
+<odoo>
+
+    <record id="library_purchase_list_view" model="ir.ui.view">
+        <field name="name">library.purchase.list</field>
+        <field name="model">books.purchase</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name='invoices_number'/>
+                <field name="member_id"/>
+                <field name="purchase_date"/>
+                <field name="state"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="library_purchase_form_view" model="ir.ui.view">
+        <field name="name">library.purchase.form</field>
+        <field name="model">books.purchase</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_buy_book"
+                            string="Buy Book"
+                            type="object"
+                            class="btn-primary"
+                            invisible="state != 'draft'"/>
+
+                    <button name="action_cancel"
+                            string="Cancel"
+                            type="object"
+                            class="btn-secondary"
+                            invisible="state != 'draft'"/>
+
+                    <field name="state"
+                           widget="statusbar"
+                           statusbar_visible="draft,done,cancel"/>
+                </header>
+
+                <sheet>
+                    <group>
+                        <group>
+                            <field name='invoices_number'/>
+                            <field name="member_id" required="1"/>
+                        </group>
+
+                        <group>
+                            <field name="total_amount" readonly="1"/>
+                            <field name="gst_amount" readonly="1"/>
+                            <field name="grand_total" readonly="1"/>
+                            <field name="purchase_date"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Purchase Lines">
+                            <field name="purchase_line_ids" readonly="state != 'draft'">
+                                <list editable="bottom">
+                                    <field name="book_id"/>
+                                    <field name="quantity"/>
+                                    <field name="price"/>
+                                    <field name="subtotal" readonly="1"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+  <record id="book_purchase_search_view" model="ir.ui.view">
+        <field name="name">library.purchase.search</field>
+        <field name="model">books.purchase</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="invoices_number"/>
+                <field name="member_id"/>
+                <field name="purchase_date"/>
+
+                <filter string="Draft" name="filter_draft" domain="[('state','=','draft')]"/>
+                <filter string="Done" name="filter_done" domain="[('state','=','done')]"/>
+                <filter string="Cancel" name="filter_cancel" domain="[('state','=','cancel')]"/>
+
+                <separator string="Group By"/>
+
+                <filter string="Member" name="group_member" context="{'group_by':'member_id'}"/>
+                <filter string="Status" name="group_state" context="{'group_by':'state'}"/>
+                <filter string="Purchase Date" name="group_date" context="{'group_by':'purchase_date'}"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="book_purchase_pivot_view" model="ir.ui.view">
+        <field name="name">Book purchase pivot</field>
+        <field name="model">books.purchase</field>
+        <field name="arch" type="xml">
+            <pivot string="purchase Analysis">
+                <field name="member_id" type="row"/>
+                <field name="purchase_date" type="col"/>
+                <field name="total_amount" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="books_purchase_graph_view" model="ir.ui.view">
+        <field name="name">books.purchase.graph</field>
+        <field name="model">books.purchase</field>
+
+        <field name="arch" type="xml">
+            <graph string="Purchase Graph" type="bar">
+
+                <field name="member_id"/>
+
+                <field name="total_amount" type="measure"/>
+
+            </graph>
+        </field>
+    </record>
+
+    <record id="action_book_purchase" model="ir.actions.act_window">
+        <field name="name">Book Purchase</field>
+        <field name="res_model">books.purchase</field>
+        <field name="view_mode">list,form,pivot,graph</field>
+        <field name="search_view_id" ref="book_purchase_search_view"/>
+    </record>
+
+    <menuitem id="menu_book_purchase"
+              name="Book Purchase"
+              parent="menu_library_root"
+              action="action_book_purchase"
+              />
+
+</odoo>

@@ -164,6 +164,12 @@ ORM methods:
 -browse()
 -mapped()
 -filtered()
+-search_count()
+-sorted()
+-copy()
+-read()
+-ensure_one() - only one record exits and we show that reccord
+
 
 
 Relations

@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_lib_books_data,access.lib.books.data,model_lib_books_data,base.group_user,1,1,1,1
+access_lib_author_data,access.lib.author.data,model_lib_author_data,base.group_user,1,1,1,1
+access_lib_member,access.lib.member,model_lib_member,base.group_user,1,1,1,1
+access_books_purchase,access.books.purchase,model_books_purchase,base.group_user,1,1,1,1
+access_purchase_line,access.purchase.line,model_purchase_line,base.group_user,1,1,1,1
+access_library_dashboard,access.library.dashboard,model_library_dashboard,base.group_user,1,1,1,1

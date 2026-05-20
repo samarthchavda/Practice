@@ -36,7 +36,7 @@ class Payment(models.Model):
 
     amount = fields.Float(
         string="Amount",
-        related="order_id.total_amount",
+        related="order_id.grand_total",
         readonly=True,
     )
 

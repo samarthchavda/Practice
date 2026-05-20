@@ -5,7 +5,7 @@
         <field name="arch" type="xml">
             <list>
                 <field name="order_number"/>
-                <field name="customer_name"/>
+                <field name="customer_id"/>
 <!--                <field name="quotation_id"/>-->
                 <field name="date"/>
                 <field name="total_amount"/>
@@ -83,7 +83,7 @@
 
                     <group>
                         <field name="order_number"/>
-                        <field name="customer_name"/>
+                        <field name="customer_id"/>
 <!--                        <field name="quotation_id"/>-->
                         <field name="date"/>
                         <field name="total_amount" readonly="1"/>
@@ -153,8 +153,7 @@
         <field name="arch" type="xml">
             <search string="Orders">
                 <field name="order_number"/>
-                <field name="customer_name"/>
-
+                <field name="customer_id"/>
                 <filter name="filter_draft"
                         string="Draft"
                         domain="[('state', '=', 'draft')]"/>

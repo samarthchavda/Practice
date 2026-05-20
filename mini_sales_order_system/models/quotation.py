@@ -18,20 +18,6 @@ class Quotation(models.Model):
     def action_sent(self):
         self.status = 'sent'
 
-    def action_confirmed(self):
-        for quotation in self:
-            quotation.status = 'confirmed'
-
-            if not quotation.order_id:
-                order = self.env['sales.order'].create({
-                    'date': quotation.quotation_date,
-                    'quotation_id': quotation.id,
-                    'customer_name': quotation.customer_name,
-                })
-
-                quotation.order_id = order.id
-
-
     def action_cancel(self):
         self.status = 'cancel'
 
