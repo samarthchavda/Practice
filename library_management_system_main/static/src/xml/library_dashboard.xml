@@ -1,0 +1,46 @@
+<templates xml:space="preserve">
+    <t t-name="library_management_system_main.LibraryDashboard">
+        <div class="p-4">
+            <h2>Library Dashboard</h2>
+<!--            <h2>-->
+<!--                Counter :-->
+<!--                <t t-esc="state.count"/>-->
+<!--            </h2>-->
+
+<!--            <button t-on-click="increment">-->
+<!--                Increase-->
+<!--            </button>-->
+
+<!--            <button t-on-click="decrement">-->
+<!--                Decrease-->
+<!--            </button>-->
+
+<!--            <button t-on-click="reset">-->
+<!--                Reset-->
+<!--            </button>-->
+            <div class="row mt-3">
+                <div class="col-md-3">
+                    <div class="card p-3" t-on-click="openBooks">
+                        <h4>Total Books</h4>
+                        <h2><t t-esc="state.total_books"/></h2>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="card p-3" t-on-click="openMember">
+                        <h4>Total Members</h4>
+                        <h2><t t-esc="state.total_members"/></h2>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="card p-3" t-on-click="openIssue">
+                        <h4>Issued Books</h4>
+                        <h2><t t-esc="state.total_issue_books"/></h2>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </t>
+</templates>

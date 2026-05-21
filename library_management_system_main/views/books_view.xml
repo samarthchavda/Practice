@@ -12,6 +12,7 @@
                 <field name="author_id" required="1"/>
                 <field name="barcode"/>
                 <field name="active"/>
+<!--                <field name="book_image" widget="image"/>-->
             </list>
         </field>
     </record>
@@ -21,6 +22,9 @@
         <field name="model">lib.books.data</field>
         <field name="arch" type="xml">
             <form>
+<!--                <group>-->
+<!--&lt;!&ndash;                    <field name="book_image" widget="image" class="or_avatar"/>&ndash;&gt;-->
+<!--                </group>-->
                 <group>
                     <field name="book_number"/>
                     <field name="b_name"/>

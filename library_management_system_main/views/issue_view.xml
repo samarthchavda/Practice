@@ -1,0 +1,71 @@
+<odoo>
+
+    <record id="library_issue_books_list_view" model="ir.ui.view">
+        <field name="name">books.issue.list</field>
+        <field name="model">lib.issue</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="member_id"/>
+                <field name="book_id"/>
+                <field name="issue_date"/>
+                <field name="return_date"/>
+                <field name="status"/>
+                <field name="late_days" readonly="1"/>
+                <field name="fine_amount" readonly="1"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="library_issue_books_form_view" model="ir.ui.view">
+        <field name="name">books.issue.form</field>
+        <field name="model">lib.issue</field>
+        <field name="arch" type="xml">
+            <form>
+
+                <header>
+                    <button name="action_issue_book"
+                            string="issue_book"
+                            type="object"
+                            class="btn-primary"
+                            invisible="status != 'draft'"/>
+
+                    <button name="action_return_book"
+                            string="return book"
+                            type="object"
+                            class="btn-primary"
+                            invisible="status != 'issued'"/>
+
+                    <field name="status"
+                           widget="statusbar"
+                           statusbar_visible="draft,issued,returned"/>
+
+
+                </header>
+
+                <group>
+                    <field name="member_id"/>
+                    <field name="book_id"/>
+                    <field name="issue_date"/>
+                    <field name="return_date"/>
+                </group>
+
+                <group string="Fine Details">
+                    <field name="late_days" readonly="1"/>
+                    <field name="fine_amount" readonly="1"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_issue_book" model="ir.actions.act_window">
+        <field name="name">issue</field>
+        <field name="res_model">lib.issue</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem
+        id="root-menu_issue_book"
+        name="Library issue book"
+        parent="menu_library_root"
+        action="action_issue_book"/>
+</odoo>

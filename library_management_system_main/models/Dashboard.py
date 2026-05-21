@@ -12,6 +12,8 @@ class Dashboard(models.Model):
     total_purchases = fields.Integer(string="Total Purchases", compute='_compute_dashboard_data')
     total_amount = fields.Float(string="Total Amount", compute='_compute_dashboard_data')
     low_stock_books = fields.Integer(string="Low Stock Books", compute='_compute_dashboard_data')
+    total_issue_books = fields.Integer(string="Total Issue Books", compute='_compute_dashboard_data')
+    total_fine_amount = fields.Integer(string="Fine Books", compute='_compute_dashboard_data')
 
     @api.depends()
     def _compute_dashboard_data(self):
@@ -22,6 +24,10 @@ class Dashboard(models.Model):
             rec.low_stock_books = self.env['lib.books.data'].search_count([
                 ('quantity', '<=', 2)
             ])
+            rec.total_issue_books = self.env['lib.issue'].search_count([])
+
+            fine_records = self.env['lib.issue'].search([('fine_amount', '>', 0)])
+            rec.total_fine_amount = sum(fine_records.mapped('fine_amount'))
 
             purchases = self.env['books.purchase'].search([])
             rec.total_amount = sum(purchases.mapped('total_amount'))

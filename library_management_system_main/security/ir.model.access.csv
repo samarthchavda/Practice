@@ -5,3 +5,4 @@ access_lib_member,access.lib.member,model_lib_member,base.group_user,1,1,1,1
 access_books_purchase,access.books.purchase,model_books_purchase,base.group_user,1,1,1,1
 access_purchase_line,access.purchase.line,model_purchase_line,base.group_user,1,1,1,1
 access_library_dashboard,access.library.dashboard,model_library_dashboard,base.group_user,1,1,1,1
+access_lib_issue,access.lib.issue,model_lib_issue,base.group_user,1,1,1,1

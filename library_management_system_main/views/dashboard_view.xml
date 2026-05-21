@@ -1,6 +1,5 @@
 <odoo>
 
-    <!-- Form View -->
     <record id="library_dashboard_form_view" model="ir.ui.view">
         <field name="name">library.dashboard.form</field>
         <field name="model">library.dashboard</field>
@@ -15,6 +14,8 @@
                         <group string="Books">
                             <field name="total_books" readonly="1"/>
                             <field name="low_stock_books" readonly="1"/>
+                            <field name="total_issue_books" readonly="1"/>
+                            <field name="total_fine_amount" readonly="1"/>
                         </group>
 
                         <group string="Members Purchases">
@@ -31,21 +32,30 @@
         </field>
     </record>
 
-
-    <!-- Action -->
     <record id="library_dashboard_action" model="ir.actions.act_window">
         <field name="name">Dashboard</field>
         <field name="res_model">library.dashboard</field>
         <field name="view_mode">form</field>
     </record>
 
-
-    <!-- Menu -->
     <menuitem
         id="library_dashboard_menu"
         name="Dashboard"
         parent="menu_library_root"
         action="library_dashboard_action"
     />
+
+    <!-- Client Action -->
+    <record id="action_library_owl_dashboard" model="ir.actions.client">
+        <field name="name">OWL Library Dashboard</field>
+        <field name="tag">library_dashboard_action</field>
+    </record>
+
+    <!-- Menu -->
+    <menuitem id="menu_library_owl_dashboard"
+              name="OWL Dashboard"
+              parent="menu_library_root"
+              action="action_library_owl_dashboard"
+              />
 
 </odoo>

@@ -1,1 +1,1 @@
-from . import author, books,member,BookPurchase,purchase_line,Dashboard
+from . import author, books,member,BookPurchase,purchase_line,Dashboard,issue

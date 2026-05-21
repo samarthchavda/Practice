@@ -6,7 +6,7 @@ class books(models.Model):
     _rec_name = "b_name"
 
     book_number = fields.Char(string="Book Number", required=True,readonly=True, copy=False,default="New")
-
+    # book_image = fields.Image(string="Book Image")
     b_name = fields.Char(string="Book Name")
     b_description = fields.Char(string="Book Description")
     b_price = fields.Float(string="Book Price")
